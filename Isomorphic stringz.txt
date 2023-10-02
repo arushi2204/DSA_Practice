@@ -6,12 +6,15 @@ class Solution {
         for(int i=0; i<s.length();i++)
             {
                 if (!map.containsKey(source[i]))
-                    map.put(source[i],target[i]);
+                    if(!map.containsValue(target[i]))
+                        map.put(source[i],target[i]);
+                    else
+                        return false;
                 else
                     if(map.get(source[i]) != target[i])
                         return false;
             }
 
-        return True;
+        return true;
     }
 }
