@@ -1,0 +1,28 @@
+public class Solution {
+    /**
+     * @param s: a string
+     * @return: the length of the longest substring T that contains at most 2 distinct characters
+     */
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        // Write your code here
+        if(s.length() <= 2)
+            return s.length();
+        int l = 0;
+        int r = 0;
+        int ans =0;
+        HashMap<Character, Integer> map = new HashMap();
+        while(r<s.length())
+        {
+            map.put(s.charAt(r),r);
+            if(map.size() == 3)
+            {
+                int min = Collections.min(map.values());
+                map.remove(s.charAt(min));
+                l = min+1;
+            }
+            ans = Math.max(ans,r-l+1);
+            r++;
+        }
+        return ans;
+    }
+}
